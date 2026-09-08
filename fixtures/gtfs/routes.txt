@@ -1,0 +1,5 @@
+route_id,route_short_name,route_long_name,route_type
+R100,300,Bus,3
+R200,80,Bus,3
+R300,Sprinter,Rail,2
+R400,Intercity,Rail,2

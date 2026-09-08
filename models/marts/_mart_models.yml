@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: fct_departures
+    description: Scheduled departures per stop per service pattern.
+    columns:
+      - name: stop_id
+        data_tests: [not_null]
+      - name: departures_per_week
+        data_tests:
+          - not_null
+          - accepted_range:
+              arguments:
+                  min_value: 0
+                  max_value: 100000
+
+  - name: mart_service_level_by_stop
+    description: Weekly scheduled departures per stop.
+    columns:
+      - name: stop_id
+        data_tests: [unique, not_null]
+      - name: departures_per_week
+        data_tests:
+          - not_null
+          - rollup_reconciles:
+              arguments:
+                  # Every departure counted at stop grain must also appear in the
+                  # fact table. If a join in the mart silently drops or duplicates
+                  # rows, the totals stop agreeing and this fails.
+                  parent_model: ref('fct_departures')
+                  parent_column: departures_per_week
+                  group_by: "1"

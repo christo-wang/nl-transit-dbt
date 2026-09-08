@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      GTFS as delivered, loaded verbatim by ingest/load_raw.py. Everything is
+      VARCHAR on purpose: casting is a modelling decision, not a loading one,
+      and a schema change upstream should fail in a model with a readable
+      error rather than silently at load time.
+    schema: raw
+    tables:
+      - name: stops
+      - name: stop_times
+      - name: trips
+      - name: routes
+      - name: calendar

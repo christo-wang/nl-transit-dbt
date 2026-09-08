@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: stg_stops
+    description: One row per boarding location. Station and entrance records are excluded.
+    columns:
+      - name: stop_id
+        data_tests: [unique, not_null]
+      - name: stop_latitude
+        data_tests:
+          - not_null
+          - accepted_range:
+              arguments:
+                  min_value: 50.7
+                  max_value: 53.6
+      - name: stop_longitude
+        data_tests:
+          - not_null
+          - accepted_range:
+              arguments:
+                  min_value: 3.3
+                  max_value: 7.3
+
+  - name: stg_stop_times
+    description: One row per trip per stop. departure_seconds may exceed 86400 by design.
+    columns:
+      - name: trip_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                  to: ref('stg_trips')
+                  field: trip_id
+      - name: stop_id
+        data_tests: [not_null]
+      - name: departure_seconds
+        data_tests:
+          # Upper bound is 30h, not 24h. GTFS allows times past midnight on the
+          # service day; the spec's own example feeds contain them. A 24h cap
+          # here would fail on every night bus in the country.
+          - accepted_range:
+              arguments:
+                  min_value: 0
+                  max_value: 108000
+
+  - name: stg_trips
+    columns:
+      - name: trip_id
+        data_tests: [unique, not_null]
+      - name: service_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                  to: ref('stg_calendar')
+                  field: service_id
+
+  - name: stg_calendar
+    columns:
+      - name: service_id
+        data_tests: [unique, not_null]
+      - name: days_per_week
+        data_tests:
+          - accepted_range:
+              arguments:
+                  min_value: 0
+                  max_value: 7

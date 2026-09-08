@@ -1,0 +1,13 @@
+stop_id,stop_name,stop_lat,stop_lon,location_type,parent_station
+HLM001,Haarlem Station,52.3878,4.6383,0,
+HLM002,Haarlem Centrum,52.381,4.6368,0,
+HLM003,Haarlem Schalkwijk,52.364,4.656,0,
+HLM004,Haarlem Zuiderpolder,52.3745,4.6702,0,
+AMS001,Amsterdam Sloterdijk,52.3889,4.8375,0,
+AMS002,Amsterdam Lelylaan,52.358,4.833,0,
+AMS003,Amsterdam Zuid,52.339,4.873,0,
+AMS004,Amsterdam Centraal,52.3791,4.9003,0,
+AMS005,Amsterdam Osdorp,52.36,4.8,0,
+ZDM001,Zaandam Station,52.439,4.813,0,
+HFD001,Hoofddorp Station,52.2905,4.701,0,
+HFD002,Hoofddorp Centrum,52.306,4.689,0,

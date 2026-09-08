@@ -1,0 +1,43 @@
+name: dbt build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: .
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Load fixture
+        # CI runs against the committed sample, never the live feed. A pull
+        # request should not fail because a third-party server is down, and it
+        # should not pull 200MB on every push.
+        run: python ingest/load_raw.py --source fixture
+
+      - name: Build and test
+        run: dbt build
+
+      - name: Reconcile against legacy
+        run: python ingest/reconcile.py
+
+      - name: Upload run artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-target
+          path: target/
+          retention-days: 7
