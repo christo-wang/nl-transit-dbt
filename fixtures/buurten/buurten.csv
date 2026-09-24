@@ -1,0 +1,13 @@
+stop_id,buurtcode,buurtnaam,wijkcode,gemeentecode,gemeentenaam,aantal_inwoners,center_lon,center_lat
+HLM001,BU_FIX_001,Stationsbuurt (fixture),WK_FIX_01,GM0392,Haarlem,3200,4.6383,52.3878
+HLM002,BU_FIX_002,Bakenes (fixture),WK_FIX_01,GM0392,Haarlem,2100,4.6368,52.3810
+HLM003,BU_FIX_003,Geneesherenbuurt (fixture),WK_FIX_02,GM0392,Haarlem,4500,4.6560,52.3640
+HLM004,BU_FIX_004,Zuiderpolder-zuid (fixture),WK_FIX_02,GM0392,Haarlem,5100,4.6702,52.3745
+AMS001,BU_FIX_005,Sloterdijk Stationskwartier (fixture),WK_FIX_03,GM0363,Amsterdam,1800,4.8375,52.3889
+AMS002,BU_FIX_006,Jacob Geelbuurt (fixture),WK_FIX_03,GM0363,Amsterdam,6200,4.8330,52.3580
+AMS003,BU_FIX_007,Zuidas-Noord (fixture),WK_FIX_04,GM0363,Amsterdam,2900,4.8730,52.3390
+AMS004,BU_FIX_008,Stationsplein e.o. (fixture),WK_FIX_04,GM0363,Amsterdam,1200,4.9003,52.3791
+AMS005,BU_FIX_009,Wildeman (fixture),WK_FIX_05,GM0363,Amsterdam,3700,4.8000,52.3600
+ZDM001,BU_FIX_010,Zaans Hout (fixture),WK_FIX_06,GM0479,Zaanstad,4800,4.8130,52.4390
+HFD001,BU_FIX_011,Hoofddorp Beukenhorst Oost (fixture),WK_FIX_07,GM0394,Haarlemmermeer,2600,4.7010,52.2905
+HFD002,BU_FIX_012,Hoofddorp Centrum West (fixture),WK_FIX_07,GM0394,Haarlemmermeer,3300,4.6890,52.3060

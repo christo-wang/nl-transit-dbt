@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_buurten
+    description: CBS neighbourhood boundaries, non-neighbourhood sentinel rows excluded.
+    columns:
+      - name: buurtcode
+        data_tests: [unique, not_null]
+      - name: aantal_inwoners
+        data_tests:
+          - accepted_range:
+              arguments:
+                  min_value: 0
+                  max_value: 100000

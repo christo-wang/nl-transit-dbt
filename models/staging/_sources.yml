@@ -13,4 +13,15 @@ sources:
       - name: stop_times
       - name: trips
       - name: routes
-      - name: calendar
+      - name: calendar_dates
+
+  - name: buurten_raw
+    description: >
+      CBS Wijk- en Buurtkaart 2024, boundaries layer only, loaded by
+      ingest/load_buurten.py (not the dbt source() mechanism — this table is
+      built from a GeoPackage via geopandas, not a plain CSV, so it bypasses
+      the usual raw-loading path). Geometry arrives as WKB bytes; stg_buurten
+      reconstitutes it with ST_GeomFromWKB.
+    schema: raw
+    tables:
+      - name: buurten

@@ -22,11 +22,19 @@ jobs:
       - name: Install
         run: pip install -r requirements.txt
 
-      - name: Load fixture
+      - name: Load GTFS fixture
         # CI runs against the committed sample, never the live feed. A pull
         # request should not fail because a third-party server is down, and it
         # should not pull 200MB on every push.
         run: python ingest/load_raw.py --source fixture
+
+      - name: Load buurten fixture
+        # Same reasoning as the GTFS fixture: CI can't pull the real 230MB
+        # CBS GeoPackage on every push, so it builds tiny stand-in polygons
+        # instead. This is what makes int_stop_buurt's spatial join (and the
+        # EPSG:4326 axis-order fix it depends on) something CI actually
+        # exercises, not just something that happened to work on one laptop.
+        run: python ingest/load_buurten_fixture.py
 
       - name: Build and test
         run: dbt build
