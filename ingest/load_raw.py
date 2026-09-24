@@ -23,7 +23,7 @@ FIXTURE_DIR = pathlib.Path("fixtures/gtfs")
 DB_PATH = "dev.duckdb"
 
 # GTFS files this project reads. Anything else in the zip is ignored.
-GTFS_FILES = ["stops.txt", "stop_times.txt", "trips.txt", "routes.txt", "calendar.txt"]
+GTFS_FILES = ["stops.txt", "stop_times.txt", "trips.txt", "routes.txt", "calendar_dates.txt"]
 
 # Bounding box for Noord-Holland, WGS84. Keeps the local build small enough
 # to rebuild in seconds. Widen this to go national.

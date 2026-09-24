@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_stop_buurt
+    description: >
+      Each stop matched to the neighbourhood polygon it physically sits
+      inside. An inner join: a stop with no match (outside all boundaries,
+      or the CRS mismatch this model exists to avoid) simply disappears
+      rather than erroring — the row-count check below is what catches that.
+    columns:
+      - name: stop_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                  to: ref('stg_stops')
+                  field: stop_id
+      - name: buurtcode
+        data_tests: [not_null]

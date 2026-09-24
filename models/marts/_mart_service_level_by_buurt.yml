@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: mart_service_level_by_buurt
+    description: Weekly scheduled departures rolled up to the CBS buurt (neighbourhood) each stop sits inside.
+    columns:
+      - name: buurtcode
+        data_tests: [not_null]
+      - name: stops_in_buurt
+        data_tests:
+          - not_null
+          - accepted_range:
+              arguments:
+                  min_value: 0
+                  max_value: 100000
+      - name: departures_per_week
+        data_tests:
+          - not_null
+          - rollup_reconciles:
+              arguments:
+                  # If int_stop_buurt's spatial join silently drops a stop
+                  # (falls outside every buurt polygon), this mart's total
+                  # goes below mart_service_level_by_stop's total and this
+                  # test fails -- the buurt-grain equivalent of the
+                  # stop-vs-fact reconciliation above.
+                  parent_model: ref('mart_service_level_by_stop')
+                  parent_column: departures_per_week
+                  group_by: "1"

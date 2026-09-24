@@ -13,6 +13,6 @@ SELECT
 FROM raw.stop_times st
 JOIN raw.trips t   ON st.trip_id = t.trip_id
 JOIN raw.stops s   ON st.stop_id = s.stop_id
-JOIN raw.calendar c ON t.service_id = c.service_id
+JOIN (SELECT DISTINCT service_id FROM raw.calendar_dates) c ON t.service_id = c.service_id
 WHERE st.departure_time IS NOT NULL
 GROUP BY 1, 2;

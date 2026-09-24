@@ -5,5 +5,5 @@ nl_transit:
       type: duckdb
       path: 'dev.duckdb'
       threads: 4
-      # extensions:
-      #   - spatial   # uncomment from day 3, when the buurt join lands
+      extensions:
+        - spatial
